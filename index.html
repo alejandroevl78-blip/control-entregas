@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tidipaga App</title>
+</head>
+<body>
+
+  <h2>Registro Tidipaga</h2>
+
+  <h3>Resumen</h3>
+<div style="margin-bottom:15px; padding:10px; border:1px solid #000;">
+
+  <strong>Total General:</strong> $<span id="totalGeneral">0</span><br>
+  <strong>Total con Córnea:</strong> $<span id="totalCornea">0</span><br><br>
+
+  <strong>Millones Totales:</strong> <span id="millonesTotales">0</span>M<br>
+  <strong>Millones con Córnea:</strong> <span id="millonesCornea">0</span>M<br><br>
+
+  <strong>Total de Entregas:</strong> <span id="totalEntregas">0</span><br>
+  <strong>Entregas con Córnea:</strong> <span id="entregasCornea">0</span>
+
+</div>
+
+  <label>Millones:</label>
+  <input type="number" id="millones"><br><br>
+
+  <label>Tipo:</label>
+  <select id="tipo">
+    <option value="grupal">Grupal</option>
+    <option value="solitario">Solitario</option>
+  </select><br><br>
+
+  <div id="contenedorSocio" style="display:none;">
+  <label>Socio:</label>
+  <select id="socio">
+    <option value="cornea">Córnea</option>
+    <option value="otros">Otros</option>
+  </select><br><br>
+</div>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <button onclick="limpiarTodo()">Borrar todo</button>
+
+  <h3 id="resultado"></h3>
+
+  <script src="app.js"></script>
+
+  <h3>Filtros</h3>
+
+<label>Periodo:</label>
+<select id="filtroPeriodo">
+  <option value="mes">Mes</option>
+  <option value="quincena">Quincena</option>
+  <option value="personalizado">Personalizado</option>
+</select>
+
+<div id="contenedorMes">
+  <input type="month" id="filtroMes">
+</div>
+
+<div id="contenedorQuincena" style="display:none;">
+  <input type="month" id="filtroMesQuincena">
+  <select id="filtroNumeroQuincena">
+    <option value="1">Primera (1-15)</option>
+    <option value="2">Segunda (16-fin)</option>
+  </select>
+</div>
+
+<div id="contenedorPersonalizado" style="display:none;">
+  Desde: <input type="date" id="fechaInicio">
+  Hasta: <input type="date" id="fechaFin">
+</div>
+
+<br>
+
+<label>Tipo:</label>
+<select id="filtroTipo">
+  <option value="total">Total</option>
+  <option value="grupal">Grupal</option>
+  <option value="solitario">Solitario</option>
+</select>
+
+<br><br>
+
+<button onclick="aplicarFiltros()">Aplicar filtros</button>
+<button onclick="resetFiltros()">Limpiar filtros</button>
+
+<h2>Historial</h2>
+<div id="historial"></div>
+
+</body>
+</html>
