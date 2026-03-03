@@ -2,8 +2,51 @@
 <html>
 <head>
   <title>Tidipaga App</title>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
 </head>
-<body>
+<style>
+body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #38bdf8;
+}
+
+input, select, button {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+button {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #334155;
+}
+
+#resumen {
+    background-color: #1e293b;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#historial div {
+    background-color: #1e293b;
+    margin-bottom: 6px;
+    padding: 6px;
+    border-radius: 6px;
+}
+</style>
 
   <h2>Registro Tidipaga</h2>
 
@@ -88,6 +131,13 @@
 
 <h2>Historial</h2>
 <div id="historial"></div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(() => console.log('Service Worker registrado'));
+}
+</script>
 
 </body>
 </html>
