@@ -3,8 +3,9 @@
 <head>
   <title>Tidipaga App</title>
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0f172a">
 </head>
+
 <style>
 body {
     background-color: #0f172a;
@@ -24,23 +25,11 @@ input, select, button {
     border-radius: 6px;
 }
 
-button {
-    cursor: pointer;
-    transition: 0.2s;
-}
-
 button:hover {
     background-color: #334155;
 }
 
-#resumen {
-    background-color: #1e293b;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#historial div {
+#historialCayo div, #historialExtra div {
     background-color: #1e293b;
     margin-bottom: 6px;
     padding: 6px;
@@ -48,80 +37,105 @@ button:hover {
 }
 </style>
 
-  <h2>Registro Tidipaga</h2>
+<body>
 
-  <h3>Resumen</h3>
-<div style="margin-bottom:15px; padding:10px; border:1px solid #000;">
+<h2>Registro Tidipaga</h2>
 
-  <strong>Total General:</strong> $<span id="totalGeneral">0</span><br>
-  <strong>Total con Córnea:</strong> $<span id="totalCornea">0</span><br><br>
+<h3>Resumen</h3>
+<div>
 
-  <strong>Millones Totales:</strong> <span id="millonesTotales">0</span>M<br>
-  <strong>Millones con Córnea:</strong> <span id="millonesCornea">0</span>M<br><br>
+<strong>Total General:</strong> $<span id="totalGeneral">0</span><br>
+<strong>Total Extras:</strong> $<span id="totalExtras">0</span><br><br>
 
-  <strong>Total de Entregas:</strong> <span id="totalEntregas">0</span><br>
-  <strong>Entregas con Córnea:</strong> <span id="entregasCornea">0</span>
+<strong>Total Millones:</strong> <span id="millonesTotales">0</span>M<br>
+<span id="dineroMillones" style="font-size:12px; color:#94a3b8;">($0)</span><br><br>
+
+<strong>Total Millones con Córnea:</strong> <span id="millonesCornea">0</span>M<br>
+<span id="dineroCornea" style="font-size:12px; color:#94a3b8;">($0)</span><br><br>
+
+<strong>Total de Entregas:</strong> <span id="totalEntregas">0</span><br>
+<strong>Entregas con Córnea:</strong> <span id="entregasCornea">0</span>
 
 </div>
 
-  <label>Millones:</label>
-  <input type="number" id="millones"><br><br>
+<br>
 
-  <label>Tipo:</label>
-  <select id="tipo">
-    <option value="grupal">Grupal</option>
-    <option value="solitario">Solitario</option>
-  </select><br><br>
+<label>Fecha:</label>
+<input type="date" id="fechaRegistro"><br><br>
 
-  <div id="contenedorSocio" style="display:none;">
-  <label>Socio:</label>
-  <select id="socio">
-    <option value="cornea">Córnea</option>
-    <option value="otros">Otros</option>
-  </select><br><br>
+<h3>Cayo</h3>
+
+<label>Millones:</label>
+<input type="number" id="millones"><br><br>
+
+<label>Tipo:</label>
+<select id="tipo">
+<option value="grupal">Grupal</option>
+<option value="solitario">Solitario</option>
+</select><br><br>
+
+<div id="contenedorSocio">
+<label>Socio:</label>
+<select id="socio">
+<option value="cornea">Córnea</option>
+<option value="otros">Otros</option>
+</select><br><br>
 </div>
 
-  <button onclick="calcular()">Calcular</button>
+<button onclick="calcular()">Registrar Cayo</button>
 
-  <button onclick="limpiarTodo()">Borrar todo</button>
+<h3>Ingresos Extra</h3>
 
-  <h3 id="resultado"></h3>
+<label>Monto:</label>
+<input type="number" id="montoExtra"><br><br>
 
-  <script src="app.js"></script>
+<label>Concepto:</label>
+<input type="text" id="conceptoExtra"><br><br>
 
-  <h3>Filtros</h3>
+<button onclick="registrarExtra()">Agregar ingreso</button>
+
+<br><br>
+
+<button onclick="limpiarTodo()">Borrar todo</button>
+
+<h3 id="resultado"></h3>
+
+<script src="app.js"></script>
+
+<h3>Filtros</h3>
 
 <label>Periodo:</label>
 <select id="filtroPeriodo">
-  <option value="mes">Mes</option>
-  <option value="quincena">Quincena</option>
-  <option value="personalizado">Personalizado</option>
+<option value="total">TOTAL</option>
+<option value="mes">Mes</option>
+<option value="quincena">Quincena</option>
+<option value="personalizado">Personalizado</option>
 </select>
 
 <div id="contenedorMes">
-  <input type="month" id="filtroMes">
+<input type="month" id="filtroMes">
 </div>
 
 <div id="contenedorQuincena" style="display:none;">
-  <input type="month" id="filtroMesQuincena">
-  <select id="filtroNumeroQuincena">
-    <option value="1">Primera (1-15)</option>
-    <option value="2">Segunda (16-fin)</option>
-  </select>
+<input type="month" id="filtroMesQuincena">
+<select id="filtroNumeroQuincena">
+<option value="1">Primera (1-15)</option>
+<option value="2">Segunda (16-fin)</option>
+</select>
 </div>
 
 <div id="contenedorPersonalizado" style="display:none;">
-  Desde: <input type="date" id="fechaInicio">
-  Hasta: <input type="date" id="fechaFin">
+Desde: <input type="date" id="fechaInicio">
+Hasta: <input type="date" id="fechaFin">
 </div>
 
 <br>
 
 <label>Tipo:</label>
 <select id="filtroTipo">
-  <option value="total">Total</option>
-  <option value="grupal">Grupal</option>
-  <option value="solitario">Solitario</option>
+<option value="total">Total</option>
+<option value="grupal">Grupal</option>
+<option value="solitario">Solitario</option>
 </select>
 
 <br><br>
@@ -130,12 +144,16 @@ button:hover {
 <button onclick="resetFiltros()">Limpiar filtros</button>
 
 <h2>Historial</h2>
-<div id="historial"></div>
+
+<h3>Cayos</h3>
+<div id="historialCayo"></div>
+
+<h3>Extras</h3>
+<div id="historialExtra"></div>
 
 <script>
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-  .then(() => console.log('Service Worker registrado'));
+  navigator.serviceWorker.register('service-worker.js');
 }
 </script>
 
