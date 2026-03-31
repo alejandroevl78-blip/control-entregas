@@ -1,6 +1,6 @@
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('millones-app').then(function(cache) {
+    caches.open('millones-app-v2').then(function(cache) {
       return cache.addAll([
         'index.html',
         'manifest.json'
