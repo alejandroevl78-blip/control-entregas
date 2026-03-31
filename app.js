@@ -145,7 +145,7 @@ function actualizarTotales(lista) {
 
       if (e.tipo === "grupal" && e.socio === "cornea") {
         millonesCornea += e.millones;
-        dineroCornea *= e.ganancia;
+        dineroCornea += e.ganancia;
         entregasCornea++;
       }
     }
